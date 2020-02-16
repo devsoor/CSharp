@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dishes</title>
+</head>
+@model Dish
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+       
+                <div class="card card-cascade wider mb-4 wow fadeIn">
+                    <div class="card-body card-body-cascade text-center p-4 justify-content-center">
+                        <div class="row ">
+                                <a href="/">Home</a>
+                        </div>
+                        @* <div class="col"> *@
+
+                            <div class="row ">
+                                <div class="col-sm-12">
+                                    <h1>@Model.Name</h1>
+                                </div>
+                                <div class="col-sm-12">
+                                    <h3>@Model.Chef</h3>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <p>@Model.Description</p>
+                            </div>
+                            <div class="row">
+                                <p>Calories: @Model.Calories</p>
+                            </div>
+                            <div class="row">
+                                <p>Tastiness: @Model.Tastiness</p>
+                            </div>
+
+                            <div class="row justify-content-end p-4">
+                                <a href="/delete/@Model.DishId" class="btn btn-danger m-4" role="button">Delete</a>
+                                <a href="/edit/@Model.DishId" class="btn btn-primary m-4" role="button">Edit</a>
+                            </div>
+                        @* </div> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

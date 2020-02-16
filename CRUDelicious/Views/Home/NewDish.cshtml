@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dishes</title>
+</head>
+@model Dish
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+                <div class="row">
+                    <h1>Add a new Dish!</h1>
+                </div>
+                <div class="card card-cascade wider mb-4 wow fadeIn">
+                    <div class="card-body card-body-cascade text-center p-4">
+                        <div class="row">
+                                <a href="/">Home</a>
+                        </div>
+                        <div class="row">
+                            <form class="text-center p-4" asp-action="AddDish" asp-controller="Home" method="post">
+                                <div class="row">
+
+                                    <div class="col-sm-7">
+                                        <div class="form-group row">
+                                            <label asp-for="Chef" class="col-sm-5 col-form-label">Chef's Name</label>
+                                            <div class="col-sm-7">
+                                                <input asp-for="Chef" class="form-control" placeholder="Name">
+                                                <span class="bg-danger text-white" asp-validation-for="Chef"></span>
+                                            </div>
+                                        </div>   
+                                        <div class="form-group row">
+                                            <label asp-for="Name" class="col-sm-5 col-form-label">Name of Dish</label>
+                                            <div class="col-sm-7">
+                                                <input asp-for="Name" class="form-control" placeholder="Name">
+                                                <span class="bg-danger text-white" asp-validation-for="Name"></span>
+                                            </div>
+                                        </div>   
+                                        <div class="form-group row">
+                                            <label asp-for="Calories" class="col-sm-5 col-form-label"># of Calories</label>
+                                            <div class="col-sm-7">
+                                                <input min=0 asp-for="Calories" class="form-control" placeholder="Calories">
+                                                <span class="bg-danger text-white" asp-validation-for="Calories"></span>
+                                            </div>
+                                        </div>  
+                                        <div class="form-group row">
+                                            <label asp-for="Tastiness" class="col-sm-5 col-form-label">Tastiness</label>
+                                            <div class="col-sm-7">
+                                                <select asp-for="Tastiness" class="form-control" placeholder="Tastiness">
+                                                    <option value=1>1</option>
+                                                    <option value=2>2</option>
+                                                    <option value=3>3</option>
+                                                    <option value=4>4</option>
+                                                    <option value=5>5</option>
+                                                </select>
+                                            <span class="bg-danger text-white" asp-validation-for="Tastiness"></span>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label asp-for="Description" class="col-form-label">Description</label>
+                                        <textarea class="form-control rounded-0" asp-for="Description" rows="5"></textarea>
+                                        <span class="bg-danger text-white" asp-validation-for="Description"></span>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-end">
+                                    <button class="btn btn-primary" type="submit">Add Dish</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

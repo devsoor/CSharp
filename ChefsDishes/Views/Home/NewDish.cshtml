@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <title>Dishes</title>
+</head>
+@model Dish
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="row">
+                    <h1>Add a new Dish!</h1>
+                </div>
+                <div class="card card-cascade wider mb-4 wow fadeIn">
+                    <div class="card-body card-body-cascade text-center p-4">
+                        <div class="row">
+                                <a href="/">Home</a>
+                        </div>
+                        <div class="row">
+                            <form class="text-center p-4" asp-action="AddDish" asp-controller="Home" method="post">
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <label asp-for="Name" class="col-sm-5 col-form-label">Name of Dish</label>
+                                            <div class="col-sm-7">
+                                                <input asp-for="Name" class="form-control" placeholder="Name">
+                                                <span class="bg-danger text-white" asp-validation-for="Name"></span>
+                                            </div>
+                                        </div>   
+                                        <div class="form-group row">
+                                            <label asp-for="Calories" class="col-sm-5 col-form-label"># of Calories</label>
+                                            <div class="col-sm-7">
+                                                <input min=0 asp-for="Calories" class="form-control" placeholder="Calories">
+                                                <span class="bg-danger text-white" asp-validation-for="Calories"></span>
+                                            </div>
+                                        </div>  
+                                        <div class="form-group row">
+                                            <label asp-for="UserId" class="col-sm-5 col-form-label">Chef</label>
+                                            <div class="col">
+                                                <select asp-for="UserId" class="form-control">
+                                                    @foreach (var user in ViewBag.Allusers)
+                                                    {
+                                                        <option value=@user.UserId>@user.FirstName @user.LastName</option>
+                                                    }
+                                                </select>
+                                            <span class="bg-danger text-white" asp-validation-for="Tastiness"></span>
+                                            </div>
+                                        </div>  
+                                        <div class="form-group row">
+                                            <label asp-for="Tastiness" class="col-sm-5 col-form-label">Tastiness</label>
+                                            <div class="col">
+                                                <select asp-for="Tastiness" class="form-control" placeholder="Tastiness">
+                                                    <option value=1>1</option>
+                                                    <option value=2>2</option>
+                                                    <option value=3>3</option>
+                                                    <option value=4>4</option>
+                                                    <option value=5>5</option>
+                                                </select>
+                                            <span class="bg-danger text-white" asp-validation-for="Tastiness"></span>
+                                            </div>
+                                        </div>  
+                                        <div class="col">
+                                            <label asp-for="Description" class="col-form-label">Description</label>
+                                            <textarea class="form-control rounded-0" asp-for="Description" cols="70" rows="5"></textarea>
+                                            <span class="bg-danger text-white" asp-validation-for="Description"></span>
+                                        </div>
+                                    </div>
+                                <div class="row justify-content-end p-4">
+                                    <button class="btn btn-primary" type="submit">Add Dish</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

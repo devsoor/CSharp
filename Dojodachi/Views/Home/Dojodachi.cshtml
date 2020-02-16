@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+@using Dojodachi.Models
+@model Pet
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h5>Fullness: <span class="text-danger"> @Model.Fullness</span></h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>Happiness: <span class="text-danger"> @Model.Happiness</span></h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>Meals: <span class="text-danger"> @Model.Meals</span></h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>Energy:<span class="text-danger"> @Model.Energy</span></h5>
+                    </div>
+                </div>
+                <div class="card card-cascade wider mb-4 wow fadeIn">
+                    <div class="card-body card-body-cascade text-center p-4">
+                        <img src="~/images/pet.jfif" alt="Dog">
+
+                        <form class="text-center p-4" asp-action="PetAction" asp-controller="Home" method="post">
+                            <a href="/Feed" class="btn btn-primary" role="button">Feed</a>
+                            <a href="/Play" class="btn btn-primary" role="button">Play</a>
+                            <a href="/Work" class="btn btn-primary" role="button">Work</a>
+                            <a href="/Sleep" class="btn btn-primary" role="button">Sleep</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dishes</title>
+</head>
+@model List<Dish>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+                <div class="row">
+                    <h1>Welcome to CRUDdelicious</h1>
+                </div>
+                <div class="card card-cascade wider mb-4 wow fadeIn">
+                    <div class="card-body card-body-cascade text-center p-4">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <p>Check out some recent dishes!</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <form class="text-center p-4" asp-action="AddDish" asp-controller="Home" method="post">
+                                    <a href="new">Add a Dish</a>
+                                </form>
+                            </div>
+                        </div>
+                        @foreach (var dish in Model)
+                            {
+                                <div class="col"><a href="@dish.DishId">@dish.Name</a> by @dish.Chef</div>
+                            }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
