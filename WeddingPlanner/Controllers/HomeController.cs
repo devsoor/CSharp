@@ -144,7 +144,7 @@ namespace WeddingPlanner.Controllers
             {
                 wedding.Name = $"{wedding.WedderOne} & {wedding.WedderTwo}";
                 User currentUser = GetCurrentUser();
-                wedding.Creator = currentUser;
+                wedding.UserId = currentUser.UserId;
                 wedding.Action = "Delete";
                 string tdDate = DateTime.Now.ToString("MMM dd, yyyy");
                 wedding.DateToDisplay = tdDate;
