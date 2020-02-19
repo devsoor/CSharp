@@ -15,17 +15,72 @@
 @model Message
 <body>
 
-    <div class="container-fluid">
-        <h3>Welcome to the Wall, @ViewBag.CurrentUser.FirstName</h3>
-        <div class="row justify-content-end">
-            <a href="/logout">Logout</a>
+    <div class="container-fluid p-4">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>CodingDojo Wall</h3>
+            </div>
+            <div class="col-sm-4 text-right">
+                <p>Welcome @ViewBag.CurrentUser.FirstName</a></p>
+            </div>
+            <div class="col-sm-2">
+                <a href="/logout">Logout</a>
+            </div>
+            
         </div> 
         <div class="row justify-content-center">
-            
+            <div class="col">
+                <form class="text-center p-4" asp-action="PostMessage" asp-controller="Home" method="post">
+                    <div class="form-group row">
+                        <label asp-for="TheMessage">Post a message</label>
+                        <textarea asp-for="TheMessage" class="form-control" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="row justify-content-end">
+                        <button type="submit" class="btn btn-primary shadow rounded">Post message</button>
+                    </div>
+                </form>
+            </div>        
         </div>
-        <div class="row justify-content-end">
-            <a class="btn btn-primary" href="/NewWedding">New Mesaage</a>
-        </div>
+
+        @foreach (var msg in ViewBag.AllMessages)
+        {
+        <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="row ">
+                        @* <div class="col-md-7"> *@
+                            <h4>@msg.User.FirstName @msg.User.LastName - @msg.CreatedAt</h4>
+                        @* </div> *@
+                        @* <div class="col-md-5"> *@
+                            <form class="text-center p-4" asp-action="DeleteMessage" asp-controller="Home" method="post">
+                                <button type='submit' value="@msg.MessageId" class="btn btn-danger shadow rounded">Delete Message</button>
+                            </form>                       
+                        @* </div> *@
+                    </div>
+                    <p>@msg.TheMessage</p>
+                    @* <div class="row justify-content-end ">
+                        <div class="col-md-10">
+                            <form class="text-center p-4" asp-action="PostComment" asp-controller="Home" method="post">
+                                <div class="form-group row">
+                                    <label asp-for="comment">Post a comment</label>
+                                    <textarea name="comment" class="form-control" id="comment" cols="30" rows="4"></textarea>
+                                </div>
+                                <input type="text" hidden asp-for="MessageId" value="@Model.MessageId">
+                                <div class="row justify-content-end">
+                                    <button type="submit" class="btn btn-success shadow rounded">Post comment</button>
+                                </div>
+                            </form>
+                            @foreach (var cmt in Model.Comment.All)
+                            {
+                                <h5>@cmt.User.FirstName @cmt.User.LasName - cmt.CreatedAt</h5>
+                                <p>@cmt.TheComment</p>
+                            }
+                        </div>
+                    </div> *@
+                </div>
+
+            </div>
+        }
     </div>
 </body>
 </html>

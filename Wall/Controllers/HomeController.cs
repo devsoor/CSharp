@@ -104,8 +104,33 @@ namespace Wall.Controllers
         {
             User currentUser = GetCurrentUser();
             ViewBag.CurrentUser = currentUser;
+            List<Message> allMessages = dbContext.Messages
+                .Include(user => user.User)
+                .OrderByDescending(u => u.CreatedAt)
+                .ToList();
+            ViewBag.AllMessages = allMessages;
             return View();
         }
+
+        [HttpPost("PostMessage")]
+        public IActionResult PostMessage(Message newMessage)
+        {
+            User currentUser = GetCurrentUser(); 
+            newMessage.UserId = currentUser.UserId;
+            newMessage.CreatedAt = DateTime.Now;
+            dbContext.Add(newMessage);
+            dbContext.SaveChanges();
+            return RedirectToAction("Dashboard");
+        }
+
+    
+        [HttpGet("/logout")]
+        public IActionResult logout()
+        {
+            HttpContext.Session.Clear();
+            return View("Index");
+        }
+
         public IActionResult Privacy()
         {
             return View();

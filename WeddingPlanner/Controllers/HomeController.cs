@@ -42,7 +42,7 @@ namespace WeddingPlanner.Controllers
                 if(userInDb == null)
                 {
                     // Add an error to ModelState and return to View!
-                    ModelState.AddModelError("", "Invalid Email/Password");
+                    ModelState.AddModelError("NewLogUser.Email", "Invalid Email/Password");
                     return View("Index");
                 }
                 
@@ -56,7 +56,7 @@ namespace WeddingPlanner.Controllers
                 if(result == 0)
                 {
                     System.Console.WriteLine("Passwords don't match");
-                    ModelState.AddModelError("Password", "Password does not match");
+                    ModelState.AddModelError("NewLogUser.Password", "Password does not match");
                     return View("Index");
                 }
                 else {
@@ -79,7 +79,7 @@ namespace WeddingPlanner.Controllers
                 // If a User exists with provided email
                 if (dbContext.Users.Any(u => u.Email == regUser.Email))
                 {
-                    ModelState.AddModelError("regUser.Email", "Email already registered!");
+                    ModelState.AddModelError("NewRegUser.Email", "Email already registered!");
                     return RedirectToAction("Index");
                 } else {
 

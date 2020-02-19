@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using AuctionsBelt.Models;
     
-namespace Wall.Models
+namespace AuctionsBelt.Models
 {
     public class User
     {
@@ -16,9 +17,10 @@ namespace Wall.Models
         [Required]
         [MinLength(2)]
         public string LastName {get;set;}
-        [EmailAddress]
         [Required]
-        public string Email {get;set;}
+        [MinLength(3)]
+        [MaxLength(20)]
+        public string Username {get;set;}
         [DataType(DataType.Password)]
         [Required]
         [MinLength(8, ErrorMessage="Password must be 8 characters or longer!")]
@@ -30,14 +32,13 @@ namespace Wall.Models
         [Compare("Password")]
         [DataType(DataType.Password)]
         public string Confirm {get;set;}
+        public int Wallet {get;set;}
+        public List<UserAuction> AuctionList {get;set;}
 
-        public List<Message> CreatedMessages {get;set;}
-        public List<Comment> CreatedComments {get;set;}
         public User()
         {
-            CreatedMessages = new List<Message>();
-            CreatedComments = new List<Comment>();
-        }  
+            Wallet = 1000;
+        }
     }
 
 } 

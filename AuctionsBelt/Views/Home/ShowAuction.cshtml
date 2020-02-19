@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <title>Auction</title>
+
+</head>
+@model Auction
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                @* <h3>Created by: @Model.Seller.FirstName</h3> *@
+            </div>
+            <div class="col-sm-4">
+                <h3>@Model.ProductName</h3>
+            </div>
+            <div class="col-sm-4">
+                <div class="row justify-content-end">
+                    <div class="col-sm-6"><a href="/Dashboard">Home</a></div>
+                    <div class="col-sm-6"><a href="/logout">Logout</a></div>
+                </div> 
+            </div>
+        </div>
+        <div class="row">
+            <h3>Time Remaining: @Model.TimeRemaining days</h3>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card card-cascade wider mb-4 wow fadeIn">
+                    <div class="card-body card-body-cascade text-left">
+                        <div class="row"><p>@Model.Description</p></div>
+                        <div class="row">Current Highest Bid</div>
+                        <div class="row"><h4>@Model.TopBid</h4></div>
+                        <form class="text-center p-4" action="/PlaceBid/@Model.AuctionId" method="post">
+                            <div class="form-group row">
+                                <div class="col-sm-7">
+                                    <input name="placedBid" class="form-control" placeholder="Your bid goes here ..">
+                                    <div class="row justify-content-end p-4">
+                                        <button class="btn btn-primary" type="submit">Bid!!</button>
+                                    </div>
+                                    <h4 class="bg-danger text-white">@ViewBag.BidError</h4>
+                                </div>
+                            </div> 
+                        </form>  
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
